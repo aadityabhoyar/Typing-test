@@ -9,16 +9,51 @@ body {
   background-color: #111111;
 }
 
+.header {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .container {
   width: 80vmin;
   padding: 50px 30px;
-  background-color: #222222;
   position: absolute;
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  border-radius: 10px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  color: aliceblue;
+}
+
+.result-details {
+  text-align: center;
+  margin-top: 20px;
+  font-size: large;
+}
+
+.title {
+  color: aliceblue;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.emoji-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: aliceblue;
+}
+
+.container {
+  width: 80vmin;
+  padding: 50px 30px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
 }
 
 .stats {
@@ -55,6 +90,7 @@ button {
   padding: 10px 30px;
   border-radius: 5px;
   font-size: 18px;
+  margin-left: 10px;
 }
 
 .result {
@@ -86,4 +122,49 @@ button {
 
 .fail {
   color: rgb(254, 76, 76);
+}
+
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 100px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  font-size: small;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }
