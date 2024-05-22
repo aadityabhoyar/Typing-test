@@ -1,0 +1,124 @@
+\
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Typing Test Results</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .header {
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .container {
+      width: 80vmin;
+      padding: 50px 30px;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+      color: aliceblue;
+    }
+
+    .result-details {
+      text-align: center;
+      margin-top: 20px;
+      font-size: large;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <div class="title">⌨️ typing_test</div>
+  </div>
+  <div class="container">
+    <canvas id="resultChart"></canvas>
+    <div class="result-details">
+      <p id="wpmText">WPM: 0</p>
+      <p id="accuracyText">Accuracy: 0%</p>
+      <p id="mistakesText">Mistakes: 0</p>
+      <button class="emoji-btn tooltip" onclick="restartTest()">👈<span class="tooltiptext">Back To The Home
+          Page</span></button>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    window.onload = function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const perWordData = JSON.parse(urlParams.get('perWordData'));
+      const wpm = urlParams.get('wpm');
+      const accuracy = urlParams.get('accuracy');
+      const mistakes = urlParams.get('mistakes');
+
+      document.getElementById('wpmText').innerText = `WPM: ${wpm}`;
+      document.getElementById('accuracyText').innerText = `Accuracy: ${accuracy}%`;
+      document.getElementById('mistakesText').innerText = `Mistakes: ${mistakes}`;
+
+      const labels = perWordData.map((_, index) => `Word ${index + 1}`);
+      const wpmData = perWordData.map(data => data.wpm);
+      const accuracyData = perWordData.map(data => data.accuracy);
+
+      const ctx = document.getElementById('resultChart').getContext('2d');
+      const resultChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'Words Per Minute',
+              data: wpmData,
+              borderColor: 'rgba(75, 192, 192, 1)',
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              fill: false,
+              yAxisID: 'y-axis-wpm'
+            },
+            {
+              label: 'Accuracy',
+              data: accuracyData,
+              borderColor: 'rgba(153, 102, 255, 1)',
+              backgroundColor: 'rgba(153, 102, 255, 0.2)',
+              fill: false,
+              yAxisID: 'y-axis-accuracy'
+            }
+          ]
+        },
+        options: {
+          scales: {
+            'y-axis-wpm': {
+              type: 'linear',
+              position: 'left',
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Words Per Minute'
+              }
+            },
+            'y-axis-accuracy': {
+              type: 'linear',
+              position: 'right',
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Accuracy (%)'
+              }
+            }
+          }
+        }
+      });
+    };
+
+    function restartTest() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+
+</html>
