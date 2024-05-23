@@ -1,5 +1,5 @@
 // Random Quotes Api URL
-const quoteApiUrl = "https://api.quotable.io/random?minLength=80&maxLength=100";
+let quoteApiUrl = "https://api.quotable.io/random?minLength=80&maxLength=100";
 const quoteSection = document.getElementById("quote");
 const userInput = document.getElementById("quote-input");
 let quote = "";
@@ -8,6 +8,19 @@ let timer = "";
 let mistakes = 0;
 let wordIndex = 0;
 let perWordData = [];
+
+// Update the quote length based on the selected difficulty
+const updateDifficulty = () => {
+  const difficulty = document.getElementById('difficulty-select').value;
+  if (difficulty === "easy") {
+    quoteApiUrl = "https://api.quotable.io/random?minLength=20&maxLength=50";
+  } else if (difficulty === "normal") {
+    quoteApiUrl = "https://api.quotable.io/random?minLength=80&maxLength=100";
+  } else if (difficulty === "hard") {
+    quoteApiUrl = "https://api.quotable.io/random?minLength=100&maxLength=150";
+  }
+  renderNewQuote();
+}
 
 // Display random quotes
 const renderNewQuote = async () => {
@@ -111,6 +124,23 @@ const startTest = () => {
   timeReduce();
   document.getElementById("start-test").style.display = "none";
   document.getElementById("stop-test").style.display = "block";
+};
+
+// Reset Test
+const resetTest = () => {
+  clearInterval(timer);
+  mistakes = 0;
+  timer = "";
+  wordIndex = 0;
+  perWordData = [];
+  time = 60;
+  document.getElementById("timer").innerText = "0s";
+  document.getElementById("mistakes").innerText = "0";
+  userInput.value = "";
+  userInput.disabled = true;
+  document.getElementById("start-test").style.display = "block";
+  document.getElementById("stop-test").style.display = "none";
+  renderNewQuote();
 };
 
 window.onload = () => {
