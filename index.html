@@ -11,7 +11,8 @@
 <body>
   <div class="header">
     <div class="title">⌨️ typing_test</div>
-    <button class="emoji-btn tooltip">✨<span class="tooltiptext">For Something</span></button>
+    <button class="emoji-btn tooltip">✨<span class="tooltiptext">For
+        Something</span></button>
   </div>
   <div class="container">
     <div class="stats">
@@ -20,6 +21,15 @@
     </div>
     <div id="quote" onmousedown="return false" onselectstart="return false"></div>
     <textarea rows="3" id="quote-input" placeholder="Type here when the test starts.."></textarea>
+    <br>
+    <br>
+    <label for="difficulty-select">Select Difficulty:</label>
+    <select id="difficulty-select" onchange="updateDifficulty()">
+      <option value="easy">Easy</option>
+      <option value="normal">Normal</option>
+      <option value="hard">Hard</option>
+    </select>
+
     <button class="emoji-btn tooltip" id="start-test" onclick="startTest()">🏃💨<span class="tooltiptext">Start
         Test</span></button>
     <button class="emoji-btn tooltip" id="stop-test" onclick="displayResult()">🫷<span class="tooltiptext">Stop
