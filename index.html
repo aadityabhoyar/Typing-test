@@ -11,47 +11,46 @@
 <body>
   <div class="header">
     <div class="title">⌨️ typing_test</div>
-    <button class="emoji-btn tooltip">✨<span class="tooltiptext">For
-        Something</span></button>
-  </div>
-  <div class="container">
-    <div class="stats">
-      <p>Time: <span id="timer">0s</span></p>
-      <p>Mistakes: <span id="mistakes">0</span></p>
-    </div>
-    <div id="quote" onmousedown="return false" onselectstart="return false"></div>
-    <textarea rows="3" id="quote-input" placeholder="Type here when the test starts.."></textarea>
-    <br>
-    <br>
-    <label for="difficulty-select">Select Difficulty:</label>
-    <select id="difficulty-select" onchange="updateDifficulty()">
-      <option value="easy">Easy</option>
-      <option value="normal">Normal</option>
-      <option value="hard">Hard</option>
-    </select>
-
-    <button class="emoji-btn tooltip" id="start-test" onclick="startTest()">🏃💨<span class="tooltiptext">Start
-        Test</span></button>
-    <button class="emoji-btn tooltip" id="stop-test" onclick="displayResult()">🫷<span class="tooltiptext">Stop
-        Test</span></button>
-    <button class="emoji-btn tooltip" id="reset-test" onclick="resetTest()">🫨<span class="tooltiptext">Reset
-        Test</span></button>
-    <div class="result">
-      <h3>Result</h3>
-      <div class="wrapper">
-        <p>Accuracy: <span id="accuracy"></span></p>
-        <p>Speed: <span id="wpm"></span></p>
+    <button class="emoji-btn tooltip" onclick="window.location.href = 'about.html';">✨<span
+        class="tooltiptext">About</span></button>
+    <div class="container">
+      <div class="stats">
+        <p>Time: <span id="timer">0s</span></p>
+        <p>Mistakes: <span id="mistakes">0</span></p>
       </div>
-    </div>
+      <div id="quote" onmousedown="return false" onselectstart="return false"></div>
+      <textarea rows="3" id="quote-input" placeholder="Type here when the test starts.."></textarea>
+      <br>
+      <br>
+      <label for="difficulty-select">Select Difficulty:</label>
+      <select id="difficulty-select" onchange="updateDifficulty()">
+        <option value="easy">Easy</option>
+        <option value="normal">Normal</option>
+        <option value="hard">Hard</option>
+      </select>
 
-    <form id="result-form" action="result.html" method="GET" style="display:none;">
-      <input type="hidden" id="accuracy-input" name="accuracy">
-      <input type="hidden" id="wpm-input" name="wpm">
-      <input type="hidden" id="mistakes-input" name="mistakes">
-      <input type="hidden" id="per-word-data-input" name="perWordData">
-    </form>
-    <!-- Script -->
-    <script src="script.js"></script>
+      <button class="emoji-btn tooltip" id="start-test" onclick="startTest()">🏃💨<span class="tooltiptext">Start
+          Test</span></button>
+      <button class="emoji-btn tooltip" id="stop-test" onclick="displayResult()">🫷<span class="tooltiptext">Stop
+          Test</span></button>
+      <button class="emoji-btn tooltip" id="reset-test" onclick="resetTest()">🫨<span class="tooltiptext">Reset
+          Test</span></button>
+      <div class="result">
+        <h3>Result</h3>
+        <div class="wrapper">
+          <p>Accuracy: <span id="accuracy"></span></p>
+          <p>Speed: <span id="wpm"></span></p>
+        </div>
+      </div>
+
+      <form id="result-form" action="result.html" method="GET" style="display:none;">
+        <input type="hidden" id="accuracy-input" name="accuracy">
+        <input type="hidden" id="wpm-input" name="wpm">
+        <input type="hidden" id="mistakes-input" name="mistakes">
+        <input type="hidden" id="per-word-data-input" name="perWordData">
+      </form>
+      <!-- Script -->
+      <script src="script.js"></script>
 </body>
 
 </html>
